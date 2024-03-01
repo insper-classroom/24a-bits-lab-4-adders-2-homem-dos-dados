@@ -36,10 +36,12 @@ def adder2bits(x, y, soma, carry):
 
     h1 = halfAdder(x[0], y[0], s0, c0)
     f2 = fullAdder(x[1], y[1], c0, s1, c1)
-        
-    soma[0].next = s0
-    soma[1].next = s1
-    carry = c1
+    
+    @always_comb
+    def comb():
+        soma[0].next = s0
+        soma[1].next = s1
+        carry.next = c1
     return instances()
 
 
